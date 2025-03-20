@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Hidroponia</string>
+    <string name="title_action_greenhouse">Administra tu invernadero</string>
+    <string name="inicio">Inicio</string>
+    <string name="plantadas">Plantadas</string>
+    <string name="termina">Termina</string>
 </resources>

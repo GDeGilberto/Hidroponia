@@ -13,4 +13,9 @@
     <string name="title">Titulo</string>
     <string name="temp">Temperatura</string>
     <string name="humidity">Humedad</string>
+    <string name="plantacion">Plantacion</string>
+    <string name="germinacion">Germinacion</string>
+    <string name="maduracion">Maduracion</string>
+    <string name="cosecha">Cosecha</string>
+    <string name="dias_de_germinacion">%1$s dias de germinacion</string>
 </resources>

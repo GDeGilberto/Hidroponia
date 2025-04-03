@@ -79,13 +79,13 @@ fun BarProgress(
                     horizontalArrangement = Arrangement.End
                 ) {
                     InformationText(
-                        R.drawable.bottom,
+                        R.drawable.sun,
                         label = stringResource(R.string.min),
                         value = min.toInt()
                     )
                     Spacer(modifier = modifier.width(8.dp))
                     InformationText(
-                        R.drawable.top,
+                        R.drawable.sun,
                         label = stringResource(R.string.max),
                         value = max.toInt()
                     )

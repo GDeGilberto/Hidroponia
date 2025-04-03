@@ -36,6 +36,8 @@ fun StateOfLife(
         )
         BarSimple(
             value = progress,
+            min = 0f,
+            max = 100f,
             color = StatusEnum.OK.color
         )
         Row(

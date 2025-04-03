@@ -109,7 +109,7 @@ fun CardWeather(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.lluvia),
+                        painter = painterResource(R.drawable.cloud_with_rain),
                         contentDescription = null,
                         modifier = Modifier.size(72.dp)
                     )
@@ -184,7 +184,7 @@ fun ItemWeather(
             color = BlueDarker
         )
         Image(
-            painter = painterResource(R.drawable.lluvia),
+            painter = painterResource(R.drawable.cloud_with_rain),
             contentDescription = null,
             modifier = Modifier.size(32.dp)
         )

@@ -25,12 +25,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.inercy.hidroponia.R
-import com.inercy.hidroponia.ui.theme.BlueLight
-import com.inercy.hidroponia.ui.theme.BlueStrong
-import com.inercy.hidroponia.ui.theme.RedLight
-import com.inercy.hidroponia.ui.theme.RedStrong
-import com.inercy.hidroponia.ui.theme.YellowLight
-import com.inercy.hidroponia.ui.theme.YellowStrong
+import com.inercy.hidroponia.ui.theme.BlueDarker
+import com.inercy.hidroponia.ui.theme.BlueSubtle
+import com.inercy.hidroponia.ui.theme.RedDarker
+import com.inercy.hidroponia.ui.theme.RedSubtle
+import com.inercy.hidroponia.ui.theme.YellowDarker
+import com.inercy.hidroponia.ui.theme.YellowSubtle
 
 /**
  * @param title title to be displayed on the card
@@ -76,9 +76,13 @@ fun CardGreenHouse(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                ClimateMeasurement("$light%", R.drawable.sun, description, YellowStrong, YellowLight)
-                ClimateMeasurement("$temp°C", R.drawable.temp, description, RedStrong, RedLight)
-                ClimateMeasurement("$humidity%", R.drawable.humidity_indoor, description, BlueStrong, BlueLight)
+                ClimateMeasurement("$light%", R.drawable.sun, description, YellowDarker,
+                    YellowSubtle
+                )
+                ClimateMeasurement("$temp°C", R.drawable.temp, description, RedDarker, RedSubtle)
+                ClimateMeasurement("$humidity%", R.drawable.humidity_indoor, description,
+                    BlueDarker, BlueSubtle
+                )
             }
         }
 

@@ -4,4 +4,18 @@
     <string name="inicio">Inicio</string>
     <string name="plantadas">Plantadas</string>
     <string name="termina">Termina</string>
+    <string name="alert_photo_empty_title">No tiene ninguna foto</string>
+    <string name="alert_photo_empty_description">Mostraremos las fotos cuando se llegue registrar alguna</string>
+    <string name="ver_mas">Ver mas</string>
+    <string name="luminosidad">Luminosidad</string>
+    <string name="min">min</string>
+    <string name="max">max</string>
+    <string name="title">Titulo</string>
+    <string name="temp">Temperatura</string>
+    <string name="humidity">Humedad</string>
+    <string name="plantacion">Plantacion</string>
+    <string name="germinacion">Germinacion</string>
+    <string name="maduracion">Maduracion</string>
+    <string name="cosecha">Cosecha</string>
+    <string name="dias_de_germinacion">%1$s dias de germinacion</string>
 </resources>

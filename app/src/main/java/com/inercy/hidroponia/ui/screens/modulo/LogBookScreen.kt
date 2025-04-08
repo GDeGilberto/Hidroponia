@@ -18,8 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.inercy.hidroponia.ui.navigation.HidroponiaAppBar
-import com.inercy.hidroponia.ui.navigation.HidroponiaScreen
 import com.inercy.hidroponia.R
 import com.inercy.hidroponia.data.DataSource
 import com.inercy.hidroponia.ui.components.CardLogBook
@@ -88,11 +86,7 @@ fun LogBookScreenPreview() {
     HidroponiaTheme(darkTheme = false) {
         Scaffold(
             topBar = {
-                HidroponiaAppBar(
-                    currentScreen = HidroponiaScreen.Home,
-                    canNavigateBack = false,
-                    navigateUp = {}
-                )
+
             }
         ) { innerPadding ->
             LogBookScreen(
@@ -111,11 +105,7 @@ fun LogBookScreenDarkPreview() {
     HidroponiaTheme(darkTheme = true) {
         Scaffold(
             topBar = {
-                HidroponiaAppBar(
-                    currentScreen = HidroponiaScreen.Home,
-                    canNavigateBack = false,
-                    navigateUp = {}
-                )
+
             }
         ) { innerPadding ->
             LogBookScreen(

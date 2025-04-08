@@ -1,4 +1,4 @@
-package com.inercy.hidroponia.ui.models
+package com.inercy.hidroponia.ui.enums
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle

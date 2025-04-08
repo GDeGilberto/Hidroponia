@@ -1,4 +1,4 @@
-package com.inercy.hidroponia.ui.models
+package com.inercy.hidroponia.ui.enums
 
 enum class TypeOfMeasurement(val description: String, val symbol: String) {
     TEMPERATURE(description = "Temperatura", symbol = "°C"),

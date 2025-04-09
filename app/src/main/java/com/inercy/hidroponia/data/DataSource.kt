@@ -1,6 +1,8 @@
 package com.inercy.hidroponia.data
 
+import com.inercy.hidroponia.data.model.Invernadero
 import com.inercy.hidroponia.data.model.LogModel
+import com.inercy.hidroponia.data.model.Status
 import com.inercy.hidroponia.ui.enums.ApplicationLog
 
 object DataSource {
@@ -40,6 +42,27 @@ object DataSource {
             endTime = "12:30 PM",
             responsible = "Ana Martinez",
             log = ApplicationLog.MEDIC
+        )
+    )
+
+    val invernaderos = listOf(
+        Invernadero(
+            nombre = "Invernadero Norte",
+            estatus = Status.ACTIVO,
+            modulo = null,
+            inventario = null
+        ),
+        Invernadero(
+            nombre = "Invernadero Sur",
+            estatus = Status.ACTIVO,
+            modulo = null,
+            inventario = null
+        ),
+        Invernadero(
+            nombre = "Invernadero Principal",
+            estatus = Status.ACTIVO,
+            modulo = null,
+            inventario = null
         )
     )
 }

@@ -19,10 +19,5 @@
     <string name="cosecha">Cosecha</string>
     <string name="dias_de_germinacion">%1$s dias de germinacion</string>
     <string name="Log">Historial</string>
-    <string name="action">Accion</string>
-    <string name="view_photo">Ver foto</string>
-    <string name="view_video">Ver video</string>
-    <string name="Dialog_successful_title">Exitoso</string>
-    <string name="Dialog_successful_description">Se guardó correctamente!</string>
-    <string name="ok">OK</string>
+    <string name="title_list_invernaderos">Invernaderos</string>
 </resources>

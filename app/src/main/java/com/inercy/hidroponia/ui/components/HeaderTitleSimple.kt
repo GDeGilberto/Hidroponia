@@ -4,7 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
@@ -22,13 +22,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.inercy.hidroponia.R
+import com.inercy.hidroponia.ui.theme.HidroponiaTheme
 
 /**
  * @param text title of the header
  * @param img image or icon displayed in the header
  * @param description description of the image for accessibility purposes
  */
-@Preview
 @Composable
 fun HeaderTitleSimple(
     text: String = "Title",
@@ -47,14 +47,15 @@ fun HeaderTitleSimple(
                 .clip(CircleShape)
                 .background(color = Color(0XFFA9D0B8))
         )
-        
+
         Row (
-            modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 20.dp),
+            modifier = Modifier.fillMaxSize().padding(horizontal = 20.dp),
             verticalAlignment = Alignment.CenterVertically
         ){
             Text(
                 text = text,
-                style = MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.displayMedium,
+                color = MaterialTheme.colorScheme.scrim,
                 modifier = Modifier.weight(2f)
             )
 
@@ -65,5 +66,20 @@ fun HeaderTitleSimple(
             )
         }
     }
+}
 
+@Preview
+@Composable
+fun HeaderTitleSimplePreview() {
+    HidroponiaTheme(darkTheme = false) {
+        HeaderTitleSimple()
+    }
+}
+
+@Preview
+@Composable
+fun HeaderTitleSimpleDarkPreview() {
+    HidroponiaTheme(darkTheme = true) {
+        HeaderTitleSimple()
+    }
 }

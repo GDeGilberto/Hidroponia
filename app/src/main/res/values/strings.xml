@@ -19,4 +19,5 @@
     <string name="cosecha">Cosecha</string>
     <string name="dias_de_germinacion">%1$s dias de germinacion</string>
     <string name="Log">Historial</string>
+    <string name="title_list_invernaderos">Invernaderos</string>
 </resources>

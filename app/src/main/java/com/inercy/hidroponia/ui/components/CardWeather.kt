@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -38,7 +39,6 @@ import androidx.compose.ui.unit.sp
 import com.inercy.hidroponia.R
 import com.inercy.hidroponia.ui.theme.*
 
-@Preview
 @Composable
 fun CardWeather(
     country: String = "Mexicali, B.C.",
@@ -142,20 +142,23 @@ fun CardWeather(
                 .clip(
                     shape = RoundedCornerShape(bottomStart = 8.dp, bottomEnd = 8.dp)
                 )
-                .background(LightBase)
+                .background(color = MaterialTheme.colorScheme.onPrimary)
                 .clickable { isDetailsVisible = !isDetailsVisible }
                 .padding(top = 16.dp, bottom = 24.dp),
-            Arrangement.Center
+            Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = stringResource(R.string.ver_mas),
-                color = BlueDarker2
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.primary
             )
+            Spacer(modifier = Modifier.width(4.dp))
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowForward,
                 contentDescription = null,
+                tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.size(16.dp),
-                tint = BlueDarker2
             )
         }
     }
@@ -193,5 +196,21 @@ fun ItemWeather(
             style = MaterialTheme.typography.bodySmall,
             color = DarkDarker
         )
+    }
+}
+
+@Preview
+@Composable
+fun CardWeatherPreview() {
+    HidroponiaTheme(darkTheme = false) {
+        CardWeather()
+    }
+}
+
+@Preview
+@Composable
+fun CardWeatherDarkPreview() {
+    HidroponiaTheme(darkTheme = true) {
+        CardWeather()
     }
 }

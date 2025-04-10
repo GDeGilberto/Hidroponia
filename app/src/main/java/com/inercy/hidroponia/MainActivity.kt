@@ -26,6 +26,18 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxHeight()
                             .padding(innerPadding)
+                val navController = rememberNavController()
+                val backStackEntry by navController.currentBackStackEntryAsState()
+
+                Scaffold(
+                    topBar = {
+                        AppTopBar(
+                            title = getTitleForRoute(backStackEntry?.destination?.route),
+                            canNavigateBack = navController.previousBackStackEntry != null,
+                            navigateUp = { navController.navigateUp() }
+                        )
+                    }
+                ) { innerPadding ->
                     )
                 }
             }

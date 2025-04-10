@@ -1,4 +1,4 @@
-package com.inercy.hidroponia.ui.screens
+package com.inercy.hidroponia.ui.screens.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,6 +19,7 @@ import com.inercy.hidroponia.ui.theme.HidroponiaTheme
 
 @Composable
 fun HidroponiaHomeScreen(
+    navigateTo: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Surface {
@@ -37,19 +38,19 @@ fun HidroponiaHomeScreen(
                 invernaderos.forEach { item ->
                     CardGreenHouse(
                         title = item.nombre,
+                        onClick = { navigateTo() },
                     )
                 }
             }
         }
     }
-
 }
 
 @Preview(showBackground = true)
 @Composable
 fun HidroponiaHomeScreenPreview() {
     HidroponiaTheme(darkTheme = false) {
-        HidroponiaHomeScreen()
+        HidroponiaHomeScreen(navigateTo = {})
     }
 }
 
@@ -57,6 +58,6 @@ fun HidroponiaHomeScreenPreview() {
 @Composable
 fun HidroponiaHomeScreenDarkPreview() {
     HidroponiaTheme(darkTheme = true) {
-        HidroponiaHomeScreen()
+        HidroponiaHomeScreen(navigateTo = {})
     }
 }

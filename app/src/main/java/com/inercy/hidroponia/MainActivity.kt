@@ -6,12 +6,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import com.inercy.hidroponia.ui.screens.modulo.LogBookScreen
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.inercy.hidroponia.navigation.AppNavHost
+import com.inercy.hidroponia.navigation.AppTopBar
+import com.inercy.hidroponia.navigation.getTitleForRoute
 import com.inercy.hidroponia.ui.theme.HidroponiaTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,11 +24,6 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             HidroponiaTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    LogBookScreen(
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .padding(innerPadding)
                 val navController = rememberNavController()
                 val backStackEntry by navController.currentBackStackEntryAsState()
 
@@ -38,6 +36,9 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 ) { innerPadding ->
+                    AppNavHost(
+                        navController = navController,
+                        modifier = Modifier.padding(innerPadding)
                     )
                 }
             }

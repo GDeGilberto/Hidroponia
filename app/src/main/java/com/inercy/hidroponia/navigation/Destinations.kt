@@ -13,6 +13,12 @@ sealed interface HidroponiaDestination {
 /**
  * App navigation destinations
  */
+
+data object Login : HidroponiaDestination {
+    override val icon = Icons.Filled.AssuredWorkload
+    override val route = "login"
+}
+
 data object Home : HidroponiaDestination {
     override val icon = Icons.Filled.Home
     override val route = "home"

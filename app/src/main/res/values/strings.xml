@@ -28,4 +28,9 @@
     <string name="ok">OK</string>
     <string name="title_list_invernaderos">Invernaderos</string>
     <string name="back">Regresar</string>
+    <string name="legend_login">Tecnología para un mundo más verde</string>
+    <string name="user">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="log_in">Iniciar Sesión</string>
+    <string name="toggle_password_visibility">Alternar visibiilidad de contraseña</string>
 </resources>

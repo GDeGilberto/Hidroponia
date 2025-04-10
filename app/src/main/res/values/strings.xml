@@ -27,4 +27,5 @@
     <string name="Dialog_successful_description">Se guardó correctamente!</string>
     <string name="ok">OK</string>
     <string name="title_list_invernaderos">Invernaderos</string>
+    <string name="back">Regresar</string>
 </resources>

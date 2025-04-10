@@ -49,9 +49,13 @@ fun CardGreenHouse(
     light: Int = 0,
     temp: Int = 0,
     humidity: Int = 0,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Card(modifier = modifier.shadow(elevation = 8.dp)) {
+    Card(
+        onClick = onClick,
+        modifier = modifier.shadow(elevation = 8.dp)
+    ) {
         Row(
             modifier = modifier
                 .fillMaxWidth()
@@ -144,7 +148,7 @@ fun ClimateMeasurement(
 @Composable
 fun CardGreenHousePreview(){
     HidroponiaTheme(darkTheme = false) {
-        CardGreenHouse()
+        CardGreenHouse(onClick = {})
     }
 }
 
@@ -152,6 +156,6 @@ fun CardGreenHousePreview(){
 @Composable
 fun CardGreenHouseDarkPreview(){
     HidroponiaTheme(darkTheme = true) {
-        CardGreenHouse()
+        CardGreenHouse(onClick = {})
     }
 }

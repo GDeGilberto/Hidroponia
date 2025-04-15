@@ -19,7 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.inercy.hidroponia.R
-import com.inercy.hidroponia.data.DataSource
+import com.inercy.hidroponia.data.local.DataSource
 import com.inercy.hidroponia.ui.components.CardLogBook
 import com.inercy.hidroponia.ui.components.FormatedDate
 import com.inercy.hidroponia.ui.theme.HidroponiaTheme

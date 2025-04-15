@@ -1,6 +1,6 @@
-package com.inercy.hidroponia.data.model
+package com.inercy.hidroponia.domain.models
 
-import com.inercy.hidroponia.ui.enums.ApplicationLog
+import com.inercy.hidroponia.utils.enums.ApplicationLog
 
 data class LogModel(
     val title: String,

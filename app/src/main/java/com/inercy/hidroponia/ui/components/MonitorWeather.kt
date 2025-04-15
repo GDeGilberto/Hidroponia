@@ -25,7 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.inercy.hidroponia.R
-import com.inercy.hidroponia.ui.enums.TypeOfMeasurement
+import com.inercy.hidroponia.utils.enums.TypeOfMeasurement
 import com.inercy.hidroponia.ui.theme.BlueDarker
 import com.inercy.hidroponia.ui.theme.BlueSubtle
 import com.inercy.hidroponia.ui.theme.DarkDarker

@@ -1,4 +1,4 @@
-package com.inercy.hidroponia.ui.screens
+package com.inercy.hidroponia.ui.screens.auth
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

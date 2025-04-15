@@ -1,9 +1,9 @@
-package com.inercy.hidroponia.data
+package com.inercy.hidroponia.data.local
 
-import com.inercy.hidroponia.data.model.Invernadero
-import com.inercy.hidroponia.data.model.LogModel
-import com.inercy.hidroponia.data.model.Status
-import com.inercy.hidroponia.ui.enums.ApplicationLog
+import com.inercy.hidroponia.domain.models.Invernadero
+import com.inercy.hidroponia.domain.models.LogModel
+import com.inercy.hidroponia.domain.models.Status
+import com.inercy.hidroponia.utils.enums.ApplicationLog
 
 object DataSource {
     val logs = listOf(

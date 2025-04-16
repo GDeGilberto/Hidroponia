@@ -10,10 +10,12 @@ import androidx.navigation.compose.rememberNavController
 import com.inercy.hidroponia.ui.navigation.AppNavHost
 import com.inercy.hidroponia.ui.navigation.AppTopBar
 import com.inercy.hidroponia.ui.navigation.getTitleForRoute
+import com.inercy.hidroponia.ui.screens.auth.AuthViewModel
 import com.inercy.hidroponia.ui.theme.HidroponiaTheme
 
 @Composable
-fun HidroponiaApp() {
+fun HidroponiaApp(authViewModel: AuthViewModel) {
+
     HidroponiaTheme {
         val navController = rememberNavController()
         val backStackEntry by navController.currentBackStackEntryAsState()
@@ -28,6 +30,7 @@ fun HidroponiaApp() {
             }
         ) { innerPadding ->
             AppNavHost(
+                authViewModel = authViewModel,
                 navController = navController,
                 modifier = Modifier.padding(innerPadding)
             )

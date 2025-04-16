@@ -1,4 +1,4 @@
-package com.inercy.hidroponia.navigation
+package com.inercy.hidroponia.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.inercy.hidroponia.ui.screens.GreenHouseScreen
-import com.inercy.hidroponia.ui.screens.LoginScreen
+import com.inercy.hidroponia.ui.screens.auth.LoginScreen
 import com.inercy.hidroponia.ui.screens.home.HidroponiaHomeScreen
 
 /**

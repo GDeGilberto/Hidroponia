@@ -1,4 +1,4 @@
-package com.inercy.hidroponia.navigation
+package com.inercy.hidroponia.ui.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AssuredWorkload

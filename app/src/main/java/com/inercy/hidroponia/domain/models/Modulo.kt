@@ -1,4 +1,4 @@
-package com.inercy.hidroponia.data.model
+package com.inercy.hidroponia.domain.models
 
 data class Modulo(
     val nombre: String,

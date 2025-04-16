@@ -13,7 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.inercy.hidroponia.R
-import com.inercy.hidroponia.ui.enums.StatusEnum
+import com.inercy.hidroponia.utils.enums.StatusEnum
 
 @Preview(showBackground = true)
 @Composable

@@ -12,7 +12,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.inercy.hidroponia.R
-import com.inercy.hidroponia.data.DataSource.invernaderos
+import com.inercy.hidroponia.data.local.DataSource.invernaderos
 import com.inercy.hidroponia.ui.components.CardGreenHouse
 import com.inercy.hidroponia.ui.components.CardWeather
 import com.inercy.hidroponia.ui.theme.HidroponiaTheme

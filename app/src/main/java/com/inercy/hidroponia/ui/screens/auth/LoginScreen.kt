@@ -47,7 +47,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.inercy.hidroponia.R
-import com.inercy.hidroponia.ui.navigation.Home
+import com.inercy.hidroponia.ui.navigation.AppDestination
 import com.inercy.hidroponia.ui.theme.HidroponiaTheme
 
 @Composable
@@ -65,7 +65,7 @@ fun LoginScreen(
 
     LaunchedEffect(authState.value) {
         when (authState.value) {
-            is AuthState.Authenticated -> navController.navigate(Home.route)
+            is AuthState.Authenticated -> navController.navigate(AppDestination.Home.route)
             is AuthState.Error -> Toast.makeText(context,
                 (authState.value as AuthState.Error).message, Toast.LENGTH_SHORT).show()
             else -> Unit

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "792837405919",
+    "project_id": "hidroponia-db26d",
+    "storage_bucket": "hidroponia-db26d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792837405919:android:f4dea3acf22815b8debd6a",
+        "android_client_info": {
+          "package_name": "com.inercy.hidroponia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTUqNtLga3Ia0dMvPjGG73KrPDyB-Iud4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

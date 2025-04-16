@@ -6,8 +6,10 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.inercy.hidroponia.R
@@ -15,41 +17,35 @@ import com.inercy.hidroponia.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppTopBar(
-    title: String,
+    currentScreen: String?,
     canNavigateBack: Boolean,
     navigateUp: () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {}
 ) {
+    val destination = AppDestination.allDestinations.find { it.route == currentScreen }
+    val showBackButton = destination?.showBackButton == true && canNavigateBack
+
     TopAppBar(
-        title = { Text(title) },
+        title = { Text(text = AppDestination.getTitleForRoute(currentScreen)) },
         navigationIcon = {
-            if (canNavigateBack) {
-                IconButton(onClick = navigateUp) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = stringResource(R.string.back)
-                    )
-                }
-            }
+            if (showBackButton) { BackButton(navigateUp) }
         },
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.surface,
+            titleContentColor = MaterialTheme.colorScheme.onSurface,
+            actionIconContentColor = MaterialTheme.colorScheme.onSurface,
+        ),
         actions = actions
     )
 }
 
-fun getTitleForRoute(route: String?): String {
-    return when (route) {
-        AppDestination.Home.route -> "Inicio"
-        AppDestination.Profile.route -> "Perfil"
-        else -> "Mi App"
-    }
-}
-
-sealed class AppDestination(val route: String) {
-    object Home : AppDestination("home")
-    object Profile : AppDestination("profile")
-    object Settings : AppDestination("settings")
-    // Para parámetros:
-    data class Detail(val id: Int) : AppDestination("detail/{id}") {
-        fun createRoute(id: Int) = "detail/$id"
+@Composable
+fun BackButton(navigateUp: () -> Unit = {}) {
+    IconButton(onClick = navigateUp) {
+        Icon(
+            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+            contentDescription = stringResource(R.string.back),
+            tint = MaterialTheme.colorScheme.onSurface
+        )
     }
 }

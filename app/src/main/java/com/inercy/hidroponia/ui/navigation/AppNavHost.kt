@@ -23,22 +23,22 @@ fun AppNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Login.route,
+        startDestination = AppDestination.Login.route,
         modifier = modifier
     ) {
-        composable(route = Login.route) {
+        composable(route = AppDestination.Login.route) {
             LoginScreen(
                 navController = navController,
                 authViewModel = authViewModel,
             )
         }
-        composable(route = Home.route) {
+        composable(route = AppDestination.Home.route) {
             HomeScreen(
                 navController = navController,
                 authViewModel = authViewModel,
             )
         }
-        composable(route = GreenHouse.route) {
+        composable(route = AppDestination.GreenHouse.route) {
             GreenHouseScreen()
         }
     }

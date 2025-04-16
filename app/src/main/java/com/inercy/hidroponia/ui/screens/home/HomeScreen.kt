@@ -20,7 +20,7 @@ import com.inercy.hidroponia.R
 import com.inercy.hidroponia.data.local.DataSource.invernaderos
 import com.inercy.hidroponia.ui.components.CardGreenHouse
 import com.inercy.hidroponia.ui.components.CardWeather
-import com.inercy.hidroponia.ui.navigation.Login
+import com.inercy.hidroponia.ui.navigation.AppDestination
 import com.inercy.hidroponia.ui.screens.auth.AuthState
 import com.inercy.hidroponia.ui.screens.auth.AuthViewModel
 import com.inercy.hidroponia.ui.theme.HidroponiaTheme
@@ -35,7 +35,7 @@ fun HomeScreen(
 
     LaunchedEffect(authState.value) {
         when (authState.value) {
-            is AuthState.Unauthenticated -> navController.navigate(Login.route)
+            is AuthState.Unauthenticated -> navController.navigate(AppDestination.Login.route)
             else -> Unit
         }
     }

@@ -1,5 +1,6 @@
 package com.inercy.hidroponia.ui.screens.auth
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,12 +25,15 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -40,18 +44,33 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.inercy.hidroponia.R
+import com.inercy.hidroponia.ui.navigation.AppDestination
 import com.inercy.hidroponia.ui.theme.HidroponiaTheme
 
 @Composable
 fun LoginScreen(
-    onLoginClick: (String, String) -> Unit,
+    navController: NavController,
+    authViewModel: AuthViewModel,
     modifier: Modifier = Modifier
 ) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val passwordVisible = remember { mutableStateOf(false) }
 
+    val authState = authViewModel.authState.observeAsState()
+    val context = LocalContext.current
+
+    LaunchedEffect(authState.value) {
+        when (authState.value) {
+            is AuthState.Authenticated -> navController.navigate(AppDestination.Home.route)
+            is AuthState.Error -> Toast.makeText(context,
+                (authState.value as AuthState.Error).message, Toast.LENGTH_SHORT).show()
+            else -> Unit
+        }
+    }
     Surface {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -138,7 +157,8 @@ fun LoginScreen(
             )
 
             Button(
-                onClick = { onLoginClick(username, password) },
+                onClick = { authViewModel.login(username, password) },
+                enabled = authState.value != AuthState.Loading,
                 shape = RoundedCornerShape(10.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -151,15 +171,19 @@ fun LoginScreen(
 @Preview
 @Composable
 fun LoginScreenPreview() {
+    val navController = rememberNavController()
+    val authViewModel = AuthViewModel()
     HidroponiaTheme(darkTheme = false) {
-        LoginScreen(onLoginClick = {_,_ ->})
+        LoginScreen(navController, authViewModel)
     }
 }
 
 @Preview
 @Composable
 fun LoginScreenDarkPreview() {
+    val navController = rememberNavController()
+    val authViewModel = AuthViewModel()
     HidroponiaTheme(darkTheme = true) {
-        LoginScreen(onLoginClick = { _,_ -> })
+        LoginScreen(navController, authViewModel)
     }
 }

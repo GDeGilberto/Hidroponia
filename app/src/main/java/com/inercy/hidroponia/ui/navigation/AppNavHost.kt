@@ -6,38 +6,39 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.inercy.hidroponia.ui.screens.GreenHouseScreen
+import com.inercy.hidroponia.ui.screens.auth.AuthViewModel
 import com.inercy.hidroponia.ui.screens.auth.LoginScreen
-import com.inercy.hidroponia.ui.screens.home.HidroponiaHomeScreen
+import com.inercy.hidroponia.ui.screens.home.HomeScreen
 
 /**
  * NavGraph assigns the composable destinations to be navigated.
- * @param navController "Class designed for screen navigation
- * @param startDestination It is a default route when the app is displayed for the first time
+ * @param authViewModel
+ * @param navController
  */
 @Composable
 fun AppNavHost(
+    authViewModel: AuthViewModel,
     navController: NavHostController,
-    startDestination: String = Login.route,
     modifier: Modifier = Modifier
 ) {
     NavHost(
         navController = navController,
-        startDestination = startDestination,
+        startDestination = AppDestination.Login.route,
         modifier = modifier
     ) {
-        composable(route = Login.route) {
+        composable(route = AppDestination.Login.route) {
             LoginScreen(
-                onLoginClick = { _, _ ->
-                    navController.navigate(Home.route)
-                }
+                navController = navController,
+                authViewModel = authViewModel,
             )
         }
-        composable(route = Home.route) {
-            HidroponiaHomeScreen(
-                navigateTo = { navController.navigate(GreenHouse.route) },
+        composable(route = AppDestination.Home.route) {
+            HomeScreen(
+                navController = navController,
+                authViewModel = authViewModel,
             )
         }
-        composable(route = GreenHouse.route) {
+        composable(route = AppDestination.GreenHouse.route) {
             GreenHouseScreen()
         }
     }

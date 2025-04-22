@@ -44,6 +44,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.inercy.hidroponia.R
@@ -53,14 +54,13 @@ import com.inercy.hidroponia.ui.theme.HidroponiaTheme
 @Composable
 fun LoginScreen(
     navController: NavController,
-    authViewModel: AuthViewModel,
-    modifier: Modifier = Modifier
+    viewModel: AuthViewModel = viewModel()
 ) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val passwordVisible = remember { mutableStateOf(false) }
 
-    val authState = authViewModel.authState.observeAsState()
+    val authState = viewModel.authState.observeAsState()
     val context = LocalContext.current
 
     LaunchedEffect(authState.value) {
@@ -75,7 +75,7 @@ fun LoginScreen(
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxSize()
                 .padding(horizontal = dimensionResource(R.dimen.padding_large))
         ) {
@@ -157,7 +157,7 @@ fun LoginScreen(
             )
 
             Button(
-                onClick = { authViewModel.login(username, password) },
+                onClick = { viewModel.login(username, password) },
                 enabled = authState.value != AuthState.Loading,
                 shape = RoundedCornerShape(10.dp),
                 modifier = Modifier.fillMaxWidth()

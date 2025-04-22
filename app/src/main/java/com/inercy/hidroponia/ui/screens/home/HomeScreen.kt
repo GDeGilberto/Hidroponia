@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.inercy.hidroponia.R
@@ -28,10 +29,9 @@ import com.inercy.hidroponia.ui.theme.HidroponiaTheme
 @Composable
 fun HomeScreen(
     navController: NavController,
-    authViewModel: AuthViewModel,
-    modifier: Modifier = Modifier
+    viewModel: AuthViewModel = viewModel()
 ) {
-    val authState = authViewModel.authState.observeAsState()
+    val authState = viewModel.authState.observeAsState()
 
     LaunchedEffect(authState.value) {
         when (authState.value) {
@@ -43,9 +43,9 @@ fun HomeScreen(
     Surface {
         Column(
             verticalArrangement = Arrangement.spacedBy(10.dp),
-            modifier = modifier.padding(horizontal = 16.dp, vertical = 10.dp)
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp)
         ) {
-            TextButton(onClick = { authViewModel.signOut() }) {
+            TextButton(onClick = { viewModel.signOut() }) {
                 Text(text = "cerrar sesion")
             }
             CardWeather()

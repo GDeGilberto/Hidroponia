@@ -1,18 +1,40 @@
-package com.inercy.hidroponia.ui.screens.auth
+package com.inercy.hidroponia.ui.screens.login
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 
-class AuthViewModel : ViewModel() {
+class LoginViewModel() : ViewModel() {
     private val auth = FirebaseAuth.getInstance()
 
     private val _authState = MutableLiveData<AuthState>()
     val authState: LiveData<AuthState> = _authState
 
+    var userInput by mutableStateOf("")
+        private set
+    var passwordInput by mutableStateOf("")
+        private set
+    var isPasswordVisible by mutableStateOf(false)
+        private set
+
     init {
         checkAuthStatus()
+    }
+
+    fun updateUser(user: String) {
+        userInput = user
+    }
+
+    fun updatePassword(password: String) {
+        passwordInput = password
+    }
+
+    fun togglePasswordVisibility() {
+        isPasswordVisible = !isPasswordVisible
     }
 
     fun checkAuthStatus() {
@@ -23,15 +45,14 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    fun login(email: String, password: String) {
-
-        if (email.isEmpty() || password.isEmpty()) {
+    fun login() {
+        if (userInput.isEmpty() || passwordInput.isEmpty()) {
             _authState.value = AuthState.Error("Por favor, ingrese un correo electrónico y una contraseña válidos.")
             return
         }
 
         _authState.value = AuthState.Loading
-        auth.signInWithEmailAndPassword(email, password)
+        auth.signInWithEmailAndPassword(userInput, passwordInput)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     _authState.value = AuthState.Authenticated

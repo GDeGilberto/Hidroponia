@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.inercy.hidroponia.ui.theme
 
 import android.app.Activity

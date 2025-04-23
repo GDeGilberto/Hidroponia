@@ -8,37 +8,35 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.inercy.hidroponia.ui.navigation.AppDestination
 import com.inercy.hidroponia.ui.navigation.AppNavHost
 import com.inercy.hidroponia.ui.navigation.AppTopBar
-import com.inercy.hidroponia.ui.screens.auth.AuthViewModel
+import com.inercy.hidroponia.ui.navigation.ProfileButton
 import com.inercy.hidroponia.ui.theme.HidroponiaTheme
 
 @Composable
-fun HidroponiaApp(
-    authViewModel: AuthViewModel,
-    navController: NavHostController = rememberNavController(),
-) {
-
+fun HidroponiaApp() {
     HidroponiaTheme {
+        val navController: NavHostController = rememberNavController()
         val backStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = backStackEntry?.destination
+        val currentScreen = backStackEntry?.destination?.route
 
         Scaffold(
             topBar = {
                 AppTopBar(
-                    currentScreen = currentRoute?.route,
+                    currentScreen = currentScreen,
                     canNavigateBack = navController.previousBackStackEntry != null,
-                    navigateUp = { navController.navigateUp() }
+                    navigateUp = { navController.navigateUp() },
+                    actions = {
+                        if (currentScreen != AppDestination.Profile.route) {
+                            ProfileButton(navController)
+                        }
+                    }
                 )
             },
-            bottomBar = {
-                /* TODO */
-                // Opcional: Podrías añadir un BottomNavigation aquí
-                // usando AppDestination.bottomNavItems
-            }
+            bottomBar = { /* TODO */ }
         ) { innerPadding ->
             AppNavHost(
-                authViewModel = authViewModel,
                 navController = navController,
                 modifier = Modifier.padding(innerPadding)
             )

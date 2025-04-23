@@ -1,4 +1,4 @@
-package com.inercy.hidroponia.ui.screens.auth
+package com.inercy.hidroponia.ui.screens.login
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -26,11 +26,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -44,6 +40,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.inercy.hidroponia.R
@@ -53,14 +50,9 @@ import com.inercy.hidroponia.ui.theme.HidroponiaTheme
 @Composable
 fun LoginScreen(
     navController: NavController,
-    authViewModel: AuthViewModel,
-    modifier: Modifier = Modifier
+    viewModel: LoginViewModel = viewModel()
 ) {
-    var username by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-    val passwordVisible = remember { mutableStateOf(false) }
-
-    val authState = authViewModel.authState.observeAsState()
+    val authState = viewModel.authState.observeAsState()
     val context = LocalContext.current
 
     LaunchedEffect(authState.value) {
@@ -75,7 +67,7 @@ fun LoginScreen(
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxSize()
                 .padding(horizontal = dimensionResource(R.dimen.padding_large))
         ) {
@@ -97,8 +89,8 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(20.dp))
 
             OutlinedTextField(
-                value = username,
-                onValueChange = { username = it },
+                value = viewModel.userInput,
+                onValueChange = { viewModel.updateUser(it) },
                 label = {
                     Text(
                         text = stringResource(R.string.user),
@@ -118,8 +110,8 @@ fun LoginScreen(
                 modifier = Modifier.fillMaxWidth()
             )
             OutlinedTextField(
-                value = password,
-                onValueChange = { password = it },
+                value = viewModel.passwordInput,
+                onValueChange = { viewModel.updatePassword(it) },
                 label = {
                     Text(
                         text = stringResource(R.string.password),
@@ -131,19 +123,19 @@ fun LoginScreen(
                         contentDescription = stringResource(R.string.password)
                     )},
                 trailingIcon = {
-                    val image = if (passwordVisible.value)
+                    val image = if (viewModel.isPasswordVisible)
                         Icons.Filled.Visibility
                     else
                         Icons.Filled.VisibilityOff
 
-                    IconButton(onClick = { passwordVisible.value = !passwordVisible.value }) {
+                    IconButton(onClick = { viewModel.togglePasswordVisibility() }) {
                         Icon(
                             imageVector = image,
                             contentDescription = stringResource(R.string.toggle_password_visibility)
                         )
                     }
                 },
-                visualTransformation = if (passwordVisible.value)
+                visualTransformation = if (viewModel.isPasswordVisible)
                     VisualTransformation.None
                 else
                     PasswordVisualTransformation(),
@@ -157,7 +149,7 @@ fun LoginScreen(
             )
 
             Button(
-                onClick = { authViewModel.login(username, password) },
+                onClick = { viewModel.login() },
                 enabled = authState.value != AuthState.Loading,
                 shape = RoundedCornerShape(10.dp),
                 modifier = Modifier.fillMaxWidth()
@@ -172,9 +164,9 @@ fun LoginScreen(
 @Composable
 fun LoginScreenPreview() {
     val navController = rememberNavController()
-    val authViewModel = AuthViewModel()
+    val loginViewModel = LoginViewModel()
     HidroponiaTheme(darkTheme = false) {
-        LoginScreen(navController, authViewModel)
+        LoginScreen(navController, loginViewModel)
     }
 }
 
@@ -182,8 +174,8 @@ fun LoginScreenPreview() {
 @Composable
 fun LoginScreenDarkPreview() {
     val navController = rememberNavController()
-    val authViewModel = AuthViewModel()
+    val loginViewModel = LoginViewModel()
     HidroponiaTheme(darkTheme = true) {
-        LoginScreen(navController, authViewModel)
+        LoginScreen(navController, loginViewModel)
     }
 }

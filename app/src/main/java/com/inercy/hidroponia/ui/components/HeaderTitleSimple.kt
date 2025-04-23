@@ -27,15 +27,14 @@ import com.inercy.hidroponia.ui.theme.HidroponiaTheme
 /**
  * @param text title of the header
  * @param img image or icon displayed in the header
- * @param description description of the image for accessibility purposes
  */
 @Composable
 fun HeaderTitleSimple(
     text: String = "Title",
     img: Int = R.drawable.greenhouseisometric,
-    description: String = "Image description"
+    modifier: Modifier = Modifier
 ) {
-    Box(modifier = Modifier
+    Box(modifier = modifier
         .fillMaxWidth()
         .height(180.dp)
         .background(color = Color(0xFFD9E9D9))){
@@ -61,7 +60,7 @@ fun HeaderTitleSimple(
 
             Image(
                 painter = painterResource(id = img),
-                contentDescription = description,
+                contentDescription = null,
                 modifier = Modifier.size(100.dp)
             )
         }

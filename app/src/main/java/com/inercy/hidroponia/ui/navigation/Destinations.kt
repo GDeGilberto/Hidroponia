@@ -20,6 +20,12 @@ sealed class AppDestination(
         showInNavigation = false,
         showBackButton = false
     )
+    object Profile : AppDestination(
+        route = "profile",
+        icon = Icons.Filled.Lock,
+        title = "Perfil",
+        showBackButton = true
+    )
     object Home : AppDestination(
         route = "Home",
         icon = Icons.Filled.Home,

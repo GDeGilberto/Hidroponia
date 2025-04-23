@@ -6,8 +6,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.inercy.hidroponia.ui.screens.GreenHouseScreen
-import com.inercy.hidroponia.ui.screens.auth.AuthViewModel
-import com.inercy.hidroponia.ui.screens.auth.LoginScreen
+import com.inercy.hidroponia.ui.screens.ProfileScreen
+import com.inercy.hidroponia.ui.screens.login.LoginScreen
 import com.inercy.hidroponia.ui.screens.home.HomeScreen
 
 /**
@@ -27,13 +27,13 @@ fun AppNavHost(
             LoginScreen(navController = navController)
         }
         composable(route = AppDestination.Home.route) {
-            HomeScreen(
-                navController = navController,
-                authViewModel = authViewModel,
-            )
+            HomeScreen()
         }
         composable(route = AppDestination.GreenHouse.route) {
             GreenHouseScreen()
+        }
+        composable(route = AppDestination.Profile.route) {
+            ProfileScreen(navController = navController)
         }
     }
 }

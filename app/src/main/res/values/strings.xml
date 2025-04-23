@@ -33,4 +33,5 @@
     <string name="password">Contraseña</string>
     <string name="log_in">Iniciar Sesión</string>
     <string name="toggle_password_visibility">Alternar visibiilidad de contraseña</string>
+    <string name="log_off">Cerrar sesion</string>
 </resources>

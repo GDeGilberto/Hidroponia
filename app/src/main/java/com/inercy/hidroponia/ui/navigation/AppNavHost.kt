@@ -12,12 +12,9 @@ import com.inercy.hidroponia.ui.screens.home.HomeScreen
 
 /**
  * NavGraph assigns the composable destinations to be navigated.
- * @param authViewModel
- * @param navController
  */
 @Composable
 fun AppNavHost(
-    authViewModel: AuthViewModel,
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
@@ -27,10 +24,7 @@ fun AppNavHost(
         modifier = modifier
     ) {
         composable(route = AppDestination.Login.route) {
-            LoginScreen(
-                navController = navController,
-                authViewModel = authViewModel,
-            )
+            LoginScreen(navController = navController)
         }
         composable(route = AppDestination.Home.route) {
             HomeScreen(

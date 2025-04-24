@@ -8,7 +8,7 @@ import androidx.navigation.compose.composable
 import com.inercy.hidroponia.ui.screens.GreenHouseScreen
 import com.inercy.hidroponia.ui.screens.ProfileScreen
 import com.inercy.hidroponia.ui.screens.login.LoginScreen
-import com.inercy.hidroponia.ui.screens.home.HomeScreen
+import com.inercy.hidroponia.ui.screens.HomeScreen
 
 /**
  * NavGraph assigns the composable destinations to be navigated.

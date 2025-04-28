@@ -36,19 +36,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil3.compose.AsyncImage
 import com.inercy.hidroponia.R
+import com.inercy.hidroponia.data.local.DataSource
+import com.inercy.hidroponia.data.remote.api.Hour
+import com.inercy.hidroponia.data.remote.api.WeatherModel
 import com.inercy.hidroponia.ui.theme.*
 
 @Composable
-fun CardWeather(
-    country: String = "Mexicali, B.C.",
-    date: String = "11 Mar | 12:56",
-    temp: Int = 23,
-    minTemp: Int = 18,
-    maxTemp: Int = 25,
-    weather: String = "Lluvia ligera"
-) {
-    var isDetailsVisible by remember { mutableStateOf(false) }
+fun CardWeather(data: WeatherModel) {
+    var isDetailsVisible by remember { mutableStateOf(true) }
 
     Column(
         modifier = Modifier
@@ -63,14 +60,14 @@ fun CardWeather(
     {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
-                text = country,
+                text = data.location.name,
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.fillMaxWidth(),
                 color = LightBase
             )
             Text(
-                text = date,
+                text = data.location.localtime,
                 style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.fillMaxWidth(),
                 color = LightBase
@@ -84,7 +81,7 @@ fun CardWeather(
                 ) {
                     Row(modifier = Modifier.fillMaxWidth()) {
                         Text(
-                            text = "${temp}°",
+                            text = "${data.current.temp_c.toInt()}°",
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = FontWeight.Bold,
                             fontSize = 64.sp,
@@ -99,7 +96,8 @@ fun CardWeather(
                     }
 
                     Text(
-                        text = "Min ${minTemp}°C, Max ${maxTemp}°C",
+                        text = "Min ${data.forecast.forecastday[0].day.mintemp_c.toInt()}°C, " +
+                                "Max ${data.forecast.forecastday[0].day.maxtemp_c.toInt()}°C",
                         style = MaterialTheme.typography.bodySmall,
                         modifier = Modifier.fillMaxWidth(),
                         color = LightBase
@@ -108,13 +106,19 @@ fun CardWeather(
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Image(
-                        painter = painterResource(R.drawable.cloud_with_rain),
+                    AsyncImage(
+                        model = "https:${data.current.condition.icon}",
                         contentDescription = null,
                         modifier = Modifier.size(72.dp)
                     )
+                    /*TODO manejar nuestras propias imagenes*/
+//                    Image(
+//                        painter = painterResource(R.drawable.cloud_with_rain),
+//                        contentDescription = null,
+//                        modifier = Modifier.size(72.dp)
+//                    )
                     Text(
-                        text = weather,
+                        text = data.current.condition.text,
                         style = MaterialTheme.typography.bodySmall,
                         color = LightBase
                     )
@@ -130,8 +134,8 @@ fun CardWeather(
                     .padding(horizontal = 8.dp, vertical = 10.dp)
                     .horizontalScroll(rememberScrollState())
             ) {
-                repeat(12) {
-                    ItemWeather()
+                data.forecast.forecastday[0].hour.forEach { hourData: Hour ->
+                    ItemWeather(hourData = hourData)
                 }
             }
         }
@@ -166,33 +170,34 @@ fun CardWeather(
 
 
 @Composable
-fun ItemWeather(
-    time: String = "00:00",
-    humanity: Int = 0,
-    temp: Int = 0
-) {
+fun ItemWeather(hourData: Hour) {
     Column(
         modifier = Modifier.padding(4.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         Text(
-            text = time,
+            text = hourData.time.split(" ")[1],
             style = MaterialTheme.typography.bodyMedium,
             color = DarkDarker
         )
         Text(
-            text = "${humanity}%",
+            text = "${hourData.humidity}%",
             style = MaterialTheme.typography.bodySmall,
             color = BlueDarker
         )
-        Image(
-            painter = painterResource(R.drawable.cloud_with_rain),
+        AsyncImage(
+            model = "https:${hourData.condition.icon}",
             contentDescription = null,
             modifier = Modifier.size(32.dp)
         )
+//        Image(
+//            painter = painterResource(R.drawable.cloud_with_rain),
+//            contentDescription = null,
+//            modifier = Modifier.size(32.dp)
+//        )
         Text(
-            text = "${temp}°C",
+            text = "${hourData.temp_c.toInt()}°C",
             style = MaterialTheme.typography.bodySmall,
             color = DarkDarker
         )
@@ -203,7 +208,7 @@ fun ItemWeather(
 @Composable
 fun CardWeatherPreview() {
     HidroponiaTheme(darkTheme = false) {
-        CardWeather()
+        CardWeather(data = DataSource.weatherData)
     }
 }
 
@@ -211,6 +216,6 @@ fun CardWeatherPreview() {
 @Composable
 fun CardWeatherDarkPreview() {
     HidroponiaTheme(darkTheme = true) {
-        CardWeather()
+        CardWeather(data = DataSource.weatherData)
     }
 }

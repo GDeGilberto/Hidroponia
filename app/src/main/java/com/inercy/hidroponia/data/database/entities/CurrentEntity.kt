@@ -3,39 +3,65 @@ package com.inercy.hidroponia.data.database.entities
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "current")
 data class CurrentEntity(
     val cloud: Int,
     @Embedded(prefix = "condition_")
     val idCondition: Int,
-    val dewpoint_c: Double,
-    val dewpoint_f: Double,
-    val feelslike_c: Double,
-    val feelslike_f: Double,
-    val gust_kph: Double,
-    val gust_mph: Double,
-    val heatindex_c: Double,
-    val heatindex_f: Double,
+    @SerializedName("dewpoint_c")
+    val dewpointC: Double,
+    @SerializedName("dewpoint_f")
+    val dewpointF: Double,
+    @SerializedName("feelslike_c")
+    val feelslikeC: Double,
+    @SerializedName("feelslike_f")
+    val feelslikeF: Double,
+    @SerializedName("gust_kph")
+    val gustKph: Double,
+    @SerializedName("gust_mph")
+    val gustMph: Double,
+    @SerializedName("heatindex_c")
+    val heatindexC: Double,
+    @SerializedName("heatindex_f")
+    val heatindexF: Double,
     val humidity: Int,
-    val is_day: Int,
-    val last_updated: String,
-    val last_updated_epoch: Int,
-    val precip_in: Double,
-    val precip_mm: Double,
-    val pressure_in: Double,
-    val pressure_mb: Double,
-    val temp_c: Double,
-    val temp_f: Double,
+    @SerializedName("is_day")
+    val isDay: Int,
+    @SerializedName("last_updated")
+    val lastUpdated: String,
+    @SerializedName("last_updated_epoch")
+    val lastUpdatedEpoch: Int,
+    @SerializedName("precip_in")
+    val precipIn: Double,
+    @SerializedName("precip_mm")
+    val precipMm: Double,
+    @SerializedName("pressure_in")
+    val pressureIn: Double,
+    @SerializedName("pressure_mb")
+    val pressureMb: Double,
+    @SerializedName("temp_c")
+    val tempC: Double,
+    @SerializedName("temp_f")
+    val tempF: Double,
     val uv: Double,
-    val vis_km: Double,
-    val vis_miles: Double,
-    val wind_degree: Int,
-    val wind_dir: String,
-    val wind_kph: Double,
-    val wind_mph: Double,
-    val windchill_c: Double,
-    val windchill_f: Double
+    @SerializedName("vis_km")
+    val visKm: Double,
+    @SerializedName("vis_miles")
+    val visMiles: Double,
+    @SerializedName("wind_degree")
+    val windDegree: Int,
+    @SerializedName("wind_dir")
+    val windDir: String,
+    @SerializedName("wind_kph")
+    val windKph: Double,
+    @SerializedName("wind_mph")
+    val windMph: Double,
+    @SerializedName("windchill_c")
+    val windchillC: Double,
+    @SerializedName("windchill_f")
+    val windchillF: Double
 ) {
     @PrimaryKey(autoGenerate = false)
     var id: Int = 0
